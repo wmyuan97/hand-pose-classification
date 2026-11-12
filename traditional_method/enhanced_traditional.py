@@ -315,19 +315,23 @@ def evaluate_candidate(data, name, columns, pipeline, grid):
         for index, value in zip(test_idx, predicted):
             predictions.append(("stratified_6fold", fold, index, value))
 
-    for subject in sorted(data["subject"].unique()):
-        test_idx = np.flatnonzero(data["subject"].to_numpy() == subject)
-        train_idx = np.flatnonzero(data["subject"].to_numpy() != subject)
-        fitted = fit_model(
-            data.iloc[train_idx][columns],
-            data.iloc[train_idx]["pose"],
-            pipeline,
-            grid,
-        )
-        predicted = fitted.predict(data.iloc[test_idx][columns])
-        protocol = f"train_other_test_subject_{subject}"
-        for index, value in zip(test_idx, predicted):
-            predictions.append((protocol, subject, index, value))
+    # Cross-subject evaluation requires at least two participants. This copy
+    # intentionally contains only the original participant's 54 images.
+    subjects = sorted(data["subject"].unique())
+    if len(subjects) > 1:
+        for subject in subjects:
+            test_idx = np.flatnonzero(data["subject"].to_numpy() == subject)
+            train_idx = np.flatnonzero(data["subject"].to_numpy() != subject)
+            fitted = fit_model(
+                data.iloc[train_idx][columns],
+                data.iloc[train_idx]["pose"],
+                pipeline,
+                grid,
+            )
+            predicted = fitted.predict(data.iloc[test_idx][columns])
+            protocol = f"train_other_test_subject_{subject}"
+            for index, value in zip(test_idx, predicted):
+                predictions.append((protocol, subject, index, value))
 
     # Refit for the controlled occlusion and view holdouts.
     holdouts = [

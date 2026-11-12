@@ -278,7 +278,7 @@ def main():
     labels = pd.read_csv(LABELS_PATH)
 
     print(f"Number of records: {len(labels)}")
-    assert len(labels) == 108, "labels.csv should contain 108 images"
+    assert len(labels) == 54, "labels.csv should contain the original 54 images"
 
     for _, row in labels.iterrows():
         image_path = PROJECT_DIR / row["path"]
