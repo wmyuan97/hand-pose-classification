@@ -1,0 +1,42 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+
+# Participant images and image-derived overlays are intentionally private
+/左手/
+/右手/
+/左手2/
+/右手2/
+/excluded_duplicates/
+/outputs/
+/ai_method/results/keypoint_overlays/
+/traditional_method/results/selected_masks/
+/traditional_method/results/masks/
+/traditional_method/results-only YcrCb/
+/traditional_method/results/*_geometry.jpg
+/traditional_method/results/svm_cv_errors.png
+*.jpeg
+*.jpg
+
+# Per-image biometric/geometry data; publish aggregate evaluations only
+/**/*features.csv
+/**/*predictions.csv
+/**/pca_scores.csv
+/labels_before_person2.csv
+
+# Local backups and renaming logs
+*backup*/
+rename_log*.txt
+
+# Documents containing participant imagery or course metadata
+/ELG5163_Method_Comparison_Summary.docx
+/ELG5163_ProjectAbstract.docx
