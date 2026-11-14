@@ -91,7 +91,7 @@ RTMPose 方法可能不需要使用上述 13 个传统形状特征。可能可�
 RTMPose 方法 X：手部关键点特征。
 共同正确答案 y：pose。
 
-五、双方必须统一的内容
+五、双方统一的内容
 
 1. 使用同一批原始图片。
 2. 每张图片使用相同的文件名或唯一编号。
@@ -100,7 +100,7 @@ RTMPose 方法 X：手部关键点特征。
 5. 使用相同的评估指标：Accuracy、Macro-F1 和混淆矩阵。
 6. 每张测试图片输出相同格式的预测结果。
 
-建议的最终预测结果格式：
+最终预测结果格式：
 
 method, protocol, fold, filename, subject, true_pose, predicted_pose, correct
 
@@ -115,7 +115,7 @@ true_pose：图片的正确动作。
 predicted_pose：模型预测的动作。
 correct：预测是否正确。
 
-六、需要特别注意
+六、
 
 pose 是正确答案 y，不能作为模型输入 X，否则就相当于提前把答案告诉模型。
 
