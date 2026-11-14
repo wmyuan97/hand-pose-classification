@@ -1,0 +1,124 @@
+传统方法与 RTMPose AI 方法对齐
+
+一、项目任务
+
+本项目的任务是：输入一张手部彩色图片，预测该图片属于哪一种手部动作。正确答案 pose 共有三类：
+
+1. abduction
+2. adduction
+3. opposition
+
+传统方法和 RTMPose 方法分别完成分类，然后在同一批测试图片上比较结果。两种方法不需要使用相同的中间特征，但必须使用相同的样本、正确标签、训练测试划分和评估指标。
+
+二、传统方法流程
+
+彩色图片 -> 手部二值 mask -> 提取手部形状特征 -> SVM/随机森林 -> 预测 pose
+
+传统方法不是把原始图片或 mask 直接交给 SVM，而是先把每张 mask 转换为一行数字。每张图片对应一个 13 维输入向量：
+
+X = [normalized_area, normalized_perimeter, aspect_ratio, extent, solidity, circularity, hu_1, hu_2, hu_3, hu_4, hu_5, hu_6, hu_7]
+
+正确动作 pose 作为模型要学习的答案 y，不能放进输入 X 中。
+
+三、13 个传统形状特征的定义
+
+先定义计算中使用的基础量：
+
+W：mask 图片的宽度。
+H：mask 图片的高度。
+A：mask 中手部白色区域的总面积。
+P：手部白色区域的轮廓总长度。
+w：包围手部的水平外接矩形宽度。
+h：包围手部的水平外接矩形高度。
+A_box：外接矩形面积，A_box = w × h。
+A_hull：手部整体凸包面积，可以理解为用一根橡皮筋包住手部轮廓后形成的面积。
+
+1. normalized_area
+
+计算公式：normalized_area = A / (W × H)。
+
+表示手部白色区域占整张图片面积的比例。例如数值为 0.23，表示手部大约占整张图片的 23%。
+
+2. normalized_perimeter
+
+计算公式：normalized_perimeter = P / sqrt(W × H)。
+
+表示按照图片尺寸归一化后的手部轮廓长度。手指张开时轮廓通常更复杂，该数值可能更大。
+
+3. aspect_ratio
+
+计算公式：aspect_ratio = w / h。
+
+表示手部整体偏横向还是纵向。数值小于 1 时整体偏竖长，大于 1 时整体偏横向。
+
+4. extent
+
+计算公式：extent = A / (w × h)。
+
+表示手部白色区域把外接矩形填满了多少。手指张开时，手指之间有较多黑色空隙，extent 可能较小；手指并拢时，白色区域更集中，extent 可能较大。
+
+5. solidity
+
+计算公式：solidity = A / A_hull。
+
+表示手部轮廓的饱满程度。数值越接近 1，轮廓越饱满，凹槽越少；数值越小，手指之间的凹槽可能越多或越深。
+
+6. circularity
+
+计算公式：circularity = （4 × pi × A） / P²。
+
+表示形状接近圆形的程度。圆形的结果最接近 1；形状越细长或轮廓越复杂，数值通常越小。
+
+7. hu_1 至 hu_7
+
+Hu 矩是根据整张二值 mask 中所有白色像素的位置计算出的 7 个整体形状数字。它们共同构成手部的“数学形状指纹”，并尽量减少平移、缩放和旋转对数值的影响。
+
+hu_1 至 hu_7 不分别对应拇指、食指或某个具体生理特征，而是需要作为 7 个整体数学特征一起交给模型学习。
+
+程序首先计算原始 Hu 矩 phi_i，然后为了压缩数值范围而进行对数变换：
+
+hu_i = -sign(phi_i) × log10(|phi_i| + 10^-12)
+
+因此，features.csv 中的 hu_1 至 hu_7 是经过对数转换后的 Hu 矩，不是原始 Hu 矩。
+
+四、RTMPose AI 方法的输入
+
+RTMPose 方法可能不需要使用上述 13 个传统形状特征。可能可以从原始图片中提取 21 个手部关键点，并使用归一化后的关键点坐标、关键点置信度、关节角度和关键点距离作为它自己的模型输入 X。
+
+两种方法的中间特征不同是正常的：
+
+传统方法 X：mask 形状特征。
+RTMPose 方法 X：手部关键点特征。
+共同正确答案 y：pose。
+
+五、双方必须统一的内容
+
+1. 使用同一批原始图片。
+2. 每张图片使用相同的文件名或唯一编号。
+3. 使用相同的 pose 标签名称：abduction、adduction、opposition。
+4. 使用完全相同的训练集和测试集划分。
+5. 使用相同的评估指标：Accuracy、Macro-F1 和混淆矩阵。
+6. 每张测试图片输出相同格式的预测结果。
+
+建议的最终预测结果格式：
+
+method, protocol, fold, filename, subject, true_pose, predicted_pose, correct
+
+各列含义：
+
+method：方法名称，例如 traditional_svm 或 rtmpose_svm。
+protocol：实验方案名称。
+fold：交叉验证中的第几折。
+filename：测试图片文件名。
+subject：受试者编号。
+true_pose：图片的正确动作。
+predicted_pose：模型预测的动作。
+correct：预测是否正确。
+
+六、需要特别注意
+
+pose 是正确答案 y，不能作为模型输入 X，否则就相当于提前把答案告诉模型。
+
+filename、subject、hand、view 和 occlusion 主要用于识别样本、划分数据和分析实验结果，不应默认作为动作分类器的输入特征。
+
+最终对齐原则是：双方可以使用不同的特征提取方法，但必须在同一批数据和相同测试规则下预测同样的三种 pose，才能公平比较结果。
