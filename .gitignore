@@ -3,20 +3,3 @@ __pycache__/
 *.py[cod]
 .idea/
 .DS_Store
-
-# 公开仓库不上传参与者图片和图片衍生中间结果
-/左手/
-/右手/
-/traditional_method/results/masks/
-/traditional_method/results/selected_masks/
-/traditional_method/results/overlays/
-/traditional_method/results/contours/
-/traditional_method/results/*_geometry.jpg
-*.jpeg
-*.jpg
-
-# 不上传逐图片特征和预测，只保留汇总结果
-/**/*features.csv
-/**/*predictions.csv
-/**/pca_scores.csv
-/traditional_method/results/svm_cv_errors.png
