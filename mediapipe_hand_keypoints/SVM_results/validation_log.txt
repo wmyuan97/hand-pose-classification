@@ -1,0 +1,10 @@
+INFO: OK: no duplicate filenames in keypoints
+INFO: OK: no duplicate filenames in ground_truth
+INFO: ground_truth rows: 108
+INFO: missing keypoint records: 0
+INFO: unmatched extra keypoint records: 0
+INFO: missing source images: 0
+INFO: joint-stratum counts: ABD|45|HAND=4; ABD|45|NONE=4; ABD|45|PAPER=4; ABD|90|HAND=4; ABD|90|NONE=4; ABD|90|PAPER=4; ABD|F|HAND=4; ABD|F|NONE=4; ABD|F|PAPER=4; ADD|45|HAND=4; ADD|45|NONE=4; ADD|45|PAPER=4; ADD|90|HAND=4; ADD|90|NONE=4; ADD|90|PAPER=4; ADD|F|HAND=4; ADD|F|NONE=4; ADD|F|PAPER=4; OPP|45|HAND=4; OPP|45|NONE=4; OPP|45|PAPER=4; OPP|90|HAND=4; OPP|90|NONE=4; OPP|90|PAPER=4; OPP|F|HAND=4; OPP|F|NONE=4; OPP|F|PAPER=4
+INFO: Feature rows: 108
+INFO: Classified held-out rows: 97 / 108
+INFO: Results written to D:\uottawa\phd\SHUEE\MV_gloria_data\mediapipe_hand_keypoints\SVM_results
