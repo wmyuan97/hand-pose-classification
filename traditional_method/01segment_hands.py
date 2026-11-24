@@ -1,3 +1,39 @@
+# 输入
+# - [labels.csv](/home/mwang259/Downloads/Elg5163/project/labels.csv)
+# - labels.csv 中登记的 JPEG 原图
+# 处理过程
+# 1. 将每张图片等比例缩放到高度 1280 px。
+# 2. 转换到 YCrCb 色彩空间。
+# 3. 保留满足以下范围的皮肤候选像素：
+# Y:  0–255
+# Cr: 133–173
+# Cb: 77–127
+# 4. 转换到 HSV，要求饱和度 S >= 50。
+# 5. YCrCb 和 HSV 两个条件取交集。
+# 6. 使用 5×5 椭圆核进行形态学开运算，去除小噪点。
+# 7. 使用 11×11 椭圆核进行闭运算，填补手部内部的小空洞。
+# 8. 查找面积不小于 1000 px² 的外轮廓。
+# 9. 最大轮廓作为主要手部区域。
+# 10. 距主轮廓包围框不超过 50 px 的小轮廓也保留，其余视为背景。
+# 输出
+# 每张输入图片会生成四种结果：
+# 输出目录	内容
+# results/masks/	原始皮肤二值掩膜
+# results/overlays/	在原图上用红色显示皮肤检测区域
+# results/contours/	绿色显示保留轮廓，红色显示拒绝轮廓
+# results/selected_masks/	最终供特征提取使用的二值手部掩膜
+#
+#
+# 最重要的中间输出是：
+# 原始彩色照片
+#     ↓
+# 1280 高度的黑白 mask
+#     ↓
+# selected_mask.png
+
+
+
+
 from pathlib import Path
 
 import cv2
@@ -278,7 +314,7 @@ def main():
     labels = pd.read_csv(LABELS_PATH)
 
     print(f"Number of records: {len(labels)}")
-    assert len(labels) == 54, "labels.csv should contain the original 54 images"
+    assert len(labels) == 108, "labels.csv should contain all 108 images"
 
     for _, row in labels.iterrows():
         image_path = PROJECT_DIR / row["path"]
