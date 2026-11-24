@@ -14,7 +14,7 @@ from sklearn.svm import SVC
 
 PROJECT = Path(__file__).resolve().parents[1]
 FEATURE_FILE = PROJECT / "traditional_method" / "results" / "features.csv"
-FOLD_FILE = PROJECT / "traditional_4fold_results" / "predictions.xlsx"
+FOLD_FILE = PROJECT / "traditional_method" / "traditional_4fold_results" / "predictions.xlsx"
 VARIANCE_TARGETS = (0.85, 0.90, 0.95, 0.97, 0.99)
 CLASSES = ["ABD", "ADD", "OPP"]
 FEATURES = [

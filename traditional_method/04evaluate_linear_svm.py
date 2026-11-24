@@ -17,8 +17,8 @@ from sklearn.svm import SVC
 
 PROJECT = Path(__file__).resolve().parents[1]
 FEATURE_FILE = PROJECT / "traditional_method" / "results" / "features.csv"
-FOLD_FILE = PROJECT / "traditional_4fold_results" / "predictions.xlsx"
-OUTPUT_ROOT = PROJECT / "linear_svm_4fold_results"
+FOLD_FILE = PROJECT / "traditional_method" / "traditional_4fold_results" / "predictions.xlsx"
+OUTPUT_ROOT = PROJECT / "traditional_method" / "linear_svm_4fold_results"
 
 CLASSES = ["ABD", "ADD", "OPP"]
 ANGLES = ["F", "45", "90"]

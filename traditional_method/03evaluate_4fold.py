@@ -17,7 +17,7 @@ from sklearn.decomposition import PCA
 SCRIPT_DIR = Path(__file__).resolve().parent
 FEATURE_FILE = SCRIPT_DIR / "results" / "features.csv"
 SHARED_FOLDS = None  # 或 SCRIPT_DIR.parent / "mediapipe_predictions.xlsx"
-OUTPUT = SCRIPT_DIR.parent / "traditional_pca_4fold_results"
+OUTPUT = SCRIPT_DIR / "traditional_pca_4fold_results"
 SEED = 20261123
 
 CLASSES = ["ABD", "ADD", "OPP"]

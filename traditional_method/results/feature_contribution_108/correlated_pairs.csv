@@ -1,0 +1,10 @@
+first,second,spearman_r
+hu_1,hu_2,0.9479931788085779
+hu_1,palm_radius_ratio,0.9069805155122562
+hu_1,skeleton_endpoints,0.8605801918187241
+hu_1,middle_width_ratio,0.8866381867035142
+hu_2,palm_radius_ratio,0.8502951265199388
+hu_3,hu_4,0.8998828203149561
+mean_defect_depth,max_defect_depth,0.9106121700469063
+palm_radius_ratio,bottom_width_ratio,0.8655631127887305
+skeleton_endpoints,middle_width_ratio,0.8692807709192817

@@ -1,0 +1,11 @@
+{
+  "evaluated_feature_sets": 90,
+  "protocols": 7,
+  "metric_rows": 633,
+  "prediction_rows": 68364,
+  "unique_photograph_hashes": 108,
+  "all_metrics_recomputed": true,
+  "train_only_preprocessing_verified": true,
+  "prior_baseline_predictions_match": true,
+  "missing_photos_retained": true
+}

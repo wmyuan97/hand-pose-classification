@@ -1,0 +1,7 @@
+selector,outer_fold,test_person,chosen,inner_accuracy,test_accuracy
+nested_remove_one,1,1,base_drop__hu_5,0.35185185185185186,0.3888888888888889
+nested_thumb_choice,1,1,base_plus_availability,0.35185185185185186,0.37037037037037035
+nested_family_choice,1,1,enhanced_plus_thumb_flag,0.35185185185185186,0.4074074074074074
+nested_remove_one,2,2,base_drop__hu_6,0.4444444444444444,0.35185185185185186
+nested_thumb_choice,2,2,base_plus_thumb_2,0.5,0.42592592592592593
+nested_family_choice,2,2,shape6,0.48148148148148145,0.3148148148148148

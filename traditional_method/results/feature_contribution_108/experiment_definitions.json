@@ -1,0 +1,1840 @@
+{
+  "model": {
+    "kernel": "rbf",
+    "C": 1.0,
+    "gamma": "scale"
+  },
+  "imputation": "training-fold median, keep_empty_features=True",
+  "seeds": [
+    42,
+    17,
+    23,
+    55,
+    101
+  ],
+  "experiments": {
+    "baseline13": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础 13 维",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "shape6": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity"
+      ],
+      "title": "只用 6 项整体形状",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "hu7": {
+      "columns": [
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "只用 7 个 Hu 矩",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "enhanced23": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "原有增强 23 维",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "extra10_only": {
+      "columns": [
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "只用原有 10 项增强几何",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_drop__normalized_area": {
+      "columns": [
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 归一化面积",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "normalized_area"
+    },
+    "base_drop__normalized_perimeter": {
+      "columns": [
+        "normalized_area",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 归一化周长",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "normalized_perimeter"
+    },
+    "base_drop__aspect_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 宽高比",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "aspect_ratio"
+    },
+    "base_drop__extent": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 矩形填充率",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "extent"
+    },
+    "base_drop__solidity": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 凸包填充率",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "solidity"
+    },
+    "base_drop__circularity": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 圆形度",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "circularity"
+    },
+    "base_drop__hu_1": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 Hu 矩 1",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_1"
+    },
+    "base_drop__hu_2": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 Hu 矩 2",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_2"
+    },
+    "base_drop__hu_3": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 Hu 矩 3",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_3"
+    },
+    "base_drop__hu_4": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 Hu 矩 4",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_4"
+    },
+    "base_drop__hu_5": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除 Hu 矩 5",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_5"
+    },
+    "base_drop__hu_6": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_7"
+      ],
+      "title": "基础移除 Hu 矩 6",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_6"
+    },
+    "base_drop__hu_7": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6"
+      ],
+      "title": "基础移除 Hu 矩 7",
+      "kind": "ablation",
+      "parent": "baseline13",
+      "changed_feature": "hu_7"
+    },
+    "enhanced_drop__normalized_area": {
+      "columns": [
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 归一化面积",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "normalized_area"
+    },
+    "enhanced_drop__normalized_perimeter": {
+      "columns": [
+        "normalized_area",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 归一化周长",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "normalized_perimeter"
+    },
+    "enhanced_drop__aspect_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 宽高比",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "aspect_ratio"
+    },
+    "enhanced_drop__extent": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 矩形填充率",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "extent"
+    },
+    "enhanced_drop__solidity": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 凸包填充率",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "solidity"
+    },
+    "enhanced_drop__circularity": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 圆形度",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "circularity"
+    },
+    "enhanced_drop__hu_1": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 1",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_1"
+    },
+    "enhanced_drop__hu_2": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 2",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_2"
+    },
+    "enhanced_drop__hu_3": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 3",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_3"
+    },
+    "enhanced_drop__hu_4": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 4",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_4"
+    },
+    "enhanced_drop__hu_5": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 5",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_5"
+    },
+    "enhanced_drop__hu_6": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 6",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_6"
+    },
+    "enhanced_drop__hu_7": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 Hu 矩 7",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "hu_7"
+    },
+    "enhanced_drop__defect_count": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 凸缺陷数量",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "defect_count"
+    },
+    "enhanced_drop__mean_defect_depth": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 平均凸缺陷深度",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "mean_defect_depth"
+    },
+    "enhanced_drop__max_defect_depth": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 最大凸缺陷深度",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "max_defect_depth"
+    },
+    "enhanced_drop__palm_radius_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 掌心半径比例",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "palm_radius_ratio"
+    },
+    "enhanced_drop__skeleton_length_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 骨架长度比例",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "skeleton_length_ratio"
+    },
+    "enhanced_drop__skeleton_endpoints": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 骨架端点数",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "skeleton_endpoints"
+    },
+    "enhanced_drop__skeleton_branches": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 骨架分支数",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "skeleton_branches"
+    },
+    "enhanced_drop__top_width_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 上部宽度比例",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "top_width_ratio"
+    },
+    "enhanced_drop__middle_width_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除 中部宽度比例",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "middle_width_ratio"
+    },
+    "enhanced_drop__bottom_width_ratio": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio"
+      ],
+      "title": "增强移除 下部宽度比例",
+      "kind": "ablation",
+      "parent": "enhanced23",
+      "changed_feature": "bottom_width_ratio"
+    },
+    "single__normalized_area": {
+      "columns": [
+        "normalized_area"
+      ],
+      "title": "单独使用 归一化面积",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "normalized_area"
+    },
+    "single__normalized_perimeter": {
+      "columns": [
+        "normalized_perimeter"
+      ],
+      "title": "单独使用 归一化周长",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "normalized_perimeter"
+    },
+    "single__aspect_ratio": {
+      "columns": [
+        "aspect_ratio"
+      ],
+      "title": "单独使用 宽高比",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "aspect_ratio"
+    },
+    "single__extent": {
+      "columns": [
+        "extent"
+      ],
+      "title": "单独使用 矩形填充率",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "extent"
+    },
+    "single__solidity": {
+      "columns": [
+        "solidity"
+      ],
+      "title": "单独使用 凸包填充率",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "solidity"
+    },
+    "single__circularity": {
+      "columns": [
+        "circularity"
+      ],
+      "title": "单独使用 圆形度",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "circularity"
+    },
+    "single__hu_1": {
+      "columns": [
+        "hu_1"
+      ],
+      "title": "单独使用 Hu 矩 1",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_1"
+    },
+    "single__hu_2": {
+      "columns": [
+        "hu_2"
+      ],
+      "title": "单独使用 Hu 矩 2",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_2"
+    },
+    "single__hu_3": {
+      "columns": [
+        "hu_3"
+      ],
+      "title": "单独使用 Hu 矩 3",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_3"
+    },
+    "single__hu_4": {
+      "columns": [
+        "hu_4"
+      ],
+      "title": "单独使用 Hu 矩 4",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_4"
+    },
+    "single__hu_5": {
+      "columns": [
+        "hu_5"
+      ],
+      "title": "单独使用 Hu 矩 5",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_5"
+    },
+    "single__hu_6": {
+      "columns": [
+        "hu_6"
+      ],
+      "title": "单独使用 Hu 矩 6",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_6"
+    },
+    "single__hu_7": {
+      "columns": [
+        "hu_7"
+      ],
+      "title": "单独使用 Hu 矩 7",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "hu_7"
+    },
+    "single__defect_count": {
+      "columns": [
+        "defect_count"
+      ],
+      "title": "单独使用 凸缺陷数量",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "defect_count"
+    },
+    "single__mean_defect_depth": {
+      "columns": [
+        "mean_defect_depth"
+      ],
+      "title": "单独使用 平均凸缺陷深度",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "mean_defect_depth"
+    },
+    "single__max_defect_depth": {
+      "columns": [
+        "max_defect_depth"
+      ],
+      "title": "单独使用 最大凸缺陷深度",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "max_defect_depth"
+    },
+    "single__palm_radius_ratio": {
+      "columns": [
+        "palm_radius_ratio"
+      ],
+      "title": "单独使用 掌心半径比例",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "palm_radius_ratio"
+    },
+    "single__skeleton_length_ratio": {
+      "columns": [
+        "skeleton_length_ratio"
+      ],
+      "title": "单独使用 骨架长度比例",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "skeleton_length_ratio"
+    },
+    "single__skeleton_endpoints": {
+      "columns": [
+        "skeleton_endpoints"
+      ],
+      "title": "单独使用 骨架端点数",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "skeleton_endpoints"
+    },
+    "single__skeleton_branches": {
+      "columns": [
+        "skeleton_branches"
+      ],
+      "title": "单独使用 骨架分支数",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "skeleton_branches"
+    },
+    "single__top_width_ratio": {
+      "columns": [
+        "top_width_ratio"
+      ],
+      "title": "单独使用 上部宽度比例",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "top_width_ratio"
+    },
+    "single__middle_width_ratio": {
+      "columns": [
+        "middle_width_ratio"
+      ],
+      "title": "单独使用 中部宽度比例",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "middle_width_ratio"
+    },
+    "single__bottom_width_ratio": {
+      "columns": [
+        "bottom_width_ratio"
+      ],
+      "title": "单独使用 下部宽度比例",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "bottom_width_ratio"
+    },
+    "single__thumb_opening_deg": {
+      "columns": [
+        "thumb_opening_deg"
+      ],
+      "title": "单独使用 拇指与食指张开角",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "thumb_opening_deg"
+    },
+    "single__thumb_index_distance_ratio": {
+      "columns": [
+        "thumb_index_distance_ratio"
+      ],
+      "title": "单独使用 拇指尖至食指尖距离/掌心半径",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "thumb_index_distance_ratio"
+    },
+    "single__thumb_palm_distance_ratio": {
+      "columns": [
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "单独使用 拇指尖至掌心距离/掌心半径",
+      "kind": "single",
+      "parent": "baseline13",
+      "changed_feature": "thumb_palm_distance_ratio"
+    },
+    "base_plus_group__convexity": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth"
+      ],
+      "title": "基础加 convexity",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "enhanced_drop_group__convexity": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除整组 convexity",
+      "kind": "group_ablation",
+      "parent": "enhanced23",
+      "changed_feature": "convexity"
+    },
+    "base_plus_group__palm_radius": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "palm_radius_ratio"
+      ],
+      "title": "基础加 palm_radius",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "enhanced_drop_group__palm_radius": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除整组 palm_radius",
+      "kind": "group_ablation",
+      "parent": "enhanced23",
+      "changed_feature": "palm_radius"
+    },
+    "base_plus_group__skeleton": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches"
+      ],
+      "title": "基础加 skeleton",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "enhanced_drop_group__skeleton": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "增强移除整组 skeleton",
+      "kind": "group_ablation",
+      "parent": "enhanced23",
+      "changed_feature": "skeleton"
+    },
+    "base_plus_group__width_profile": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio"
+      ],
+      "title": "基础加 width_profile",
+      "kind": "family",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "enhanced_drop_group__width_profile": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches"
+      ],
+      "title": "增强移除整组 width_profile",
+      "kind": "group_ablation",
+      "parent": "enhanced23",
+      "changed_feature": "width_profile"
+    },
+    "base_drop_group__area_perimeter": {
+      "columns": [
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除整组 area_perimeter",
+      "kind": "group_ablation",
+      "parent": "baseline13",
+      "changed_feature": "area_perimeter"
+    },
+    "base_drop_group__compactness": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7"
+      ],
+      "title": "基础移除整组 compactness",
+      "kind": "group_ablation",
+      "parent": "baseline13",
+      "changed_feature": "compactness"
+    },
+    "base_plus_thumb_1": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_opening_deg"
+      ],
+      "title": "基础加拇指测量 1（14 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_2": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_index_distance_ratio"
+      ],
+      "title": "基础加拇指测量 2（14 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_3": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "基础加拇指测量 3（14 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_1_2": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_opening_deg",
+        "thumb_index_distance_ratio"
+      ],
+      "title": "基础加拇指测量 1_2（15 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_1_3": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_opening_deg",
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "基础加拇指测量 1_3（15 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_2_3": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_index_distance_ratio",
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "基础加拇指测量 2_3（15 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_1_2_3": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_opening_deg",
+        "thumb_index_distance_ratio",
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "基础加拇指测量 1_2_3（16 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_availability": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_geometry_available"
+      ],
+      "title": "基础加提取成功标志（14 维）",
+      "kind": "control",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "base_plus_thumb_flag": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "thumb_opening_deg",
+        "thumb_index_distance_ratio",
+        "thumb_palm_distance_ratio",
+        "thumb_geometry_available"
+      ],
+      "title": "基础加三项拇指及成功标志（17 维）",
+      "kind": "addition",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "enhanced_plus_thumb": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio",
+        "thumb_opening_deg",
+        "thumb_index_distance_ratio",
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "增强加三项拇指（26 维）",
+      "kind": "addition",
+      "parent": "enhanced23",
+      "changed_feature": ""
+    },
+    "enhanced_plus_thumb_flag": {
+      "columns": [
+        "normalized_area",
+        "normalized_perimeter",
+        "aspect_ratio",
+        "extent",
+        "solidity",
+        "circularity",
+        "hu_1",
+        "hu_2",
+        "hu_3",
+        "hu_4",
+        "hu_5",
+        "hu_6",
+        "hu_7",
+        "defect_count",
+        "mean_defect_depth",
+        "max_defect_depth",
+        "palm_radius_ratio",
+        "skeleton_length_ratio",
+        "skeleton_endpoints",
+        "skeleton_branches",
+        "top_width_ratio",
+        "middle_width_ratio",
+        "bottom_width_ratio",
+        "thumb_opening_deg",
+        "thumb_index_distance_ratio",
+        "thumb_palm_distance_ratio",
+        "thumb_geometry_available"
+      ],
+      "title": "增强加拇指及成功标志（27 维）",
+      "kind": "addition",
+      "parent": "enhanced23",
+      "changed_feature": ""
+    },
+    "thumb3_only": {
+      "columns": [
+        "thumb_opening_deg",
+        "thumb_index_distance_ratio",
+        "thumb_palm_distance_ratio"
+      ],
+      "title": "只用三项拇指测量",
+      "kind": "diagnostic",
+      "parent": "baseline13",
+      "changed_feature": ""
+    },
+    "availability_only": {
+      "columns": [
+        "thumb_geometry_available"
+      ],
+      "title": "只用提取成功标志",
+      "kind": "control",
+      "parent": "baseline13",
+      "changed_feature": ""
+    }
+  }
+}
